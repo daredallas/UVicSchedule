@@ -57,9 +57,9 @@ class Auth:
                 # Grab the selector
                 self._browser.form = form
                 selector = self._browser.find_control('term_in')
-                terms = [i for i in selector.items if '(View only)' not in i.get_labels()[0]._text]
+                terms = [i for i in selector.items if '(View only)' not in i.get_labels()[0].text]
                 for i, option in enumerate(terms):
-                    print "  [{0}] {1}".format(i + 1, option.get_labels()[0]._text)
+                    print "  [{0}] {1}".format(i + 1, option.get_labels()[0].text)
 
                 term_number = None
                 while type(term_number) is not int or term_number >= len(terms) or term_number < 0:
@@ -68,7 +68,7 @@ class Auth:
                     except ValueError:
                         continue
 
-                # print terms[term_number].get_labels()[0]._text
+                # print terms[term_number].get_labels()[0].text
                 selector.value = [terms[term_number].name]
 
                 response = self._browser.submit()
